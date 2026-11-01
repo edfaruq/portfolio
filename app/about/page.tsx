@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { FieldPass } from "@/components/fx/FieldPass";
 import { Magnetic } from "@/components/fx/Magnetic";
 import { Marquee } from "@/components/fx/Marquee";
 import { Reveal } from "@/components/fx/Reveal";
@@ -17,26 +18,36 @@ export default function AboutPage() {
     <>
       <Container className="pb-20 pt-36 sm:pt-44">
         <Eyebrow>About · {profile.location}</Eyebrow>
-        <h1 className="mt-6 font-display font-bold uppercase leading-[0.85] tracking-[-0.05em]">
-          <SplitText text="Hi, I'm" trigger="load" playful className="block text-[16vw] sm:text-[11vw]" />
-          <SplitText text="Faruq." trigger="load" delay={0.1} playful className="block text-[16vw] text-lime sm:text-[11vw]" />
-        </h1>
-        <div className="mt-14 grid gap-10 lg:grid-cols-[1.5fr_1fr] lg:items-end">
-          <ScrollWords
-            className="font-display text-3xl leading-[1.15] tracking-tight sm:text-5xl"
-            text={profile.intro.replace("two mining companies", "two *mining* companies").replace("energy company", "*energy* company").replace("hazard-mapping WebGIS", "hazard-mapping *WebGIS*")}
-          />
-          <Magnetic className="justify-self-start lg:justify-self-end">
-            <a
-              href={profile.cv}
-              data-cursor="Download"
-              className="group flex size-44 items-center justify-center rounded-full bg-accent text-center font-mono text-sm uppercase tracking-widest text-bg transition-transform duration-500 hover:scale-110 sm:size-52"
-            >
-              Download
-              <br />
-              CV ↓
-            </a>
-          </Magnetic>
+        <div className="grid gap-x-12 gap-y-6 lg:grid-cols-[1fr_auto]">
+          <div>
+            <h1 className="mt-6 font-display font-bold uppercase leading-[0.85] tracking-[-0.05em]">
+              <SplitText text="Hi, I'm" trigger="load" playful className="block text-[16vw] sm:text-[min(11vw,180px)]" />
+              <SplitText text="Faruq." trigger="load" delay={0.1} playful className="block text-[16vw] text-lime sm:text-[min(11vw,180px)]" />
+            </h1>
+            <div className="mt-14 grid gap-10 xl:grid-cols-[1.5fr_auto] xl:items-end">
+              <ScrollWords
+                className="font-display text-3xl leading-[1.15] tracking-tight sm:text-5xl"
+                text={profile.intro.replace("two mining companies", "two *mining* companies").replace("energy company", "*energy* company").replace("hazard-mapping WebGIS", "hazard-mapping *WebGIS*")}
+              />
+              <Magnetic className="justify-self-start xl:justify-self-end">
+                <a
+                  href={profile.cv}
+                  data-cursor="Download"
+                  className="group flex size-44 items-center justify-center rounded-full bg-accent text-center font-mono text-sm uppercase tracking-widest text-bg transition-transform duration-500 hover:scale-110 sm:size-52"
+                >
+                  Download
+                  <br />
+                  CV ↓
+                </a>
+              </Magnetic>
+            </div>
+          </div>
+          <div className="lg:-mt-20 lg:w-[340px]">
+            <FieldPass />
+            <p className="mt-6 text-center font-mono text-[11px] uppercase tracking-[0.2em] text-fg-dim">
+              ↑ Hold &amp; drag the card ↑
+            </p>
+          </div>
         </div>
       </Container>
 
@@ -57,10 +68,6 @@ export default function AboutPage() {
             <p className="font-mono text-xs uppercase tracking-widest text-fg-dim">{education.period}</p>
             <h2 className="mt-2 font-display text-4xl font-bold tracking-tight sm:text-5xl">{education.school}</h2>
             <p className="mt-1 text-lg text-fg-dim">{education.degree} · {education.place}</p>
-            <div className="mt-6 inline-flex items-baseline gap-3 rounded-full border border-lime px-5 py-2">
-              <span className="font-mono text-xs uppercase tracking-widest text-fg-dim">GPA</span>
-              <span className="font-display text-2xl font-bold text-lime">{education.gpa}</span>
-            </div>
             <div className="mt-8 rounded-2xl border border-line p-6">
               <p className="font-mono text-[11px] uppercase tracking-widest text-accent">Thesis</p>
               <p className="mt-2 leading-relaxed">{education.thesis}</p>

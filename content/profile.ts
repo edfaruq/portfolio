@@ -28,7 +28,6 @@ export const education = {
   school: "Universitas Diponegoro",
   place: "Semarang",
   degree: "Bachelor of Computer Science",
-  gpa: "3.13 / 4.00",
   period: "Aug 2022 – Sep 2026",
   thesis:
     "Design and Development of a Web-Based B2B Exporter E-Commerce Application Using the ICONIX Process (case study: PT Telaga Cipta)",
@@ -99,7 +98,7 @@ export const strata: Stratum[] = [
     title: "B.Sc. Computer Science",
     org: "Universitas Diponegoro",
     kind: "education",
-    note: "GPA 3.13. KKN-T Best Program Award for the hazard-mapping WebGIS.",
+    note: "KKN-T Best Program Award for the hazard-mapping WebGIS.",
     href: "/about",
   },
 ];
