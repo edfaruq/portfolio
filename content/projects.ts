@@ -7,6 +7,8 @@ export const sectors: Record<Sector, { label: string; symbol: string }> = {
   academic: { label: "Academic", symbol: "◇" },
 };
 
+export type Logo = { src: string; width: number; height: number };
+
 export type Photo = { src: string; width: number; height: number; alt: string; caption: string };
 
 export type Project = {
@@ -27,6 +29,8 @@ export type Project = {
   metrics: { value: string; label: string }[];
   stack: string[];
   link?: string;
+  /** Company logo (transparent PNG), shown monochrome. */
+  logo?: Logo;
   /** Photos shown as a draggable polaroid stack. */
   gallery?: { title: string; photos: Photo[] };
 };
@@ -74,6 +78,7 @@ export const projects: Project[] = [
   },
   {
     slug: "cidata-mining-platform",
+    logo: { src: "/images/logos/cidata.png", width: 480, height: 633 },
     code: "JKT-01",
     color: "#d4ff3a",
     title: "Trilingual Product & Company Platform",
@@ -105,6 +110,7 @@ export const projects: Project[] = [
   },
   {
     slug: "pertagas-security-dashboard",
+    logo: { src: "/images/logos/pertagas.png", width: 900, height: 178 },
     code: "JKT-02",
     color: "#7c9cff",
     title: "Security Monitoring Dashboard",
@@ -144,6 +150,7 @@ export const projects: Project[] = [
   },
   {
     slug: "kristalin-corporate-site",
+    logo: { src: "/images/logos/kristalin.png", width: 900, height: 229 },
     code: "JKT-03",
     color: "#ffc83a",
     title: "Trilingual Corporate Website",

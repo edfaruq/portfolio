@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { CompanyLogo } from "@/components/CompanyLogo";
 import { ContourArt } from "@/components/ContourArt";
 import { CountUp } from "@/components/fx/CountUp";
 import { Magnetic } from "@/components/fx/Magnetic";
@@ -40,7 +41,12 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
           <Link href="/projects" className="group inline-flex font-mono text-xs uppercase tracking-widest" data-cursor="Back">
             ← All work
           </Link>
-          <p className="mt-10 font-mono text-xs uppercase tracking-[0.2em]">
+          {p.logo && (
+            <div className="mt-10">
+              <CompanyLogo logo={p.logo} name={p.client} area={64} />
+            </div>
+          )}
+          <p className={`${p.logo ? "mt-6" : "mt-10"} font-mono text-xs uppercase tracking-[0.2em]`}>
             {p.code} · {sectors[p.sector].symbol} {sectors[p.sector].label} · {p.period}
           </p>
           <h1

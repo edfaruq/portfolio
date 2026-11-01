@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { CompanyLogo } from "@/components/CompanyLogo";
 import { CountUp } from "@/components/fx/CountUp";
 import { Marquee } from "@/components/fx/Marquee";
 import { ScrollWords } from "@/components/fx/ScrollWords";
@@ -7,6 +9,7 @@ import { Hero } from "@/components/sections/Hero";
 import { HorizontalWork } from "@/components/sections/HorizontalWork";
 import { Container, Eyebrow } from "@/components/ui";
 import { skills } from "@/content/profile";
+import { projects } from "@/content/projects";
 
 const numbers = [
   { value: "3", label: "Industry clients", note: "2 mining · 1 energy" },
@@ -16,6 +19,7 @@ const numbers = [
 ];
 
 const allSkills = skills.flatMap((g) => g.items);
+const companies = projects.filter((p) => p.logo);
 
 export default function Home() {
   return (
@@ -71,6 +75,25 @@ export default function Home() {
             </div>
           ))}
         </dl>
+
+        <p className="mt-16 font-mono text-[11px] uppercase tracking-[0.2em] text-fg-dim">Worked with</p>
+        <ul className="mt-6 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-3">
+          {companies.map((p) => (
+            <li key={p.slug} className="bg-bg">
+              <Link
+                href={`/projects/${p.slug}`}
+                data-cursor="Open"
+                data-cursor-color={p.color}
+                className="group relative flex h-44 items-center justify-center text-fg transition-colors duration-500 hover:bg-fg sm:h-52"
+              >
+                <CompanyLogo logo={p.logo!} name={p.client} area={84} reveal />
+                <span className="absolute inset-x-4 bottom-4 translate-y-1 text-center font-mono text-[10px] uppercase tracking-[0.2em] text-bg/70 opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                  {p.role} · {p.period}
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
       </Container>
 
       <HorizontalWork />
