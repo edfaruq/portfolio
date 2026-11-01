@@ -145,6 +145,7 @@ export const projects: Project[] = [
       { value: "3", label: "languages searched" },
     ],
     stack: ["Laravel", "Inertia.js"],
+    link: "https://kristalin.co.id/",
   },
   {
     slug: "b2b-exporter-ecommerce",

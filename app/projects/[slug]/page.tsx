@@ -122,7 +122,7 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
           </Reveal>
           {p.link && (
             <Magnetic>
-              <a href={p.link} className="mt-10 inline-flex h-14 items-center rounded-full bg-lime px-7 font-mono text-sm uppercase tracking-widest text-bg">
+              <a href={p.link} target="_blank" rel="noopener noreferrer" data-cursor="Open" className="mt-10 inline-flex h-14 items-center rounded-full bg-lime px-7 font-mono text-sm uppercase tracking-widest text-bg">
                 Visit live site ↗
               </a>
             </Magnetic>
