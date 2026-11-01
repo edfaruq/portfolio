@@ -3,7 +3,10 @@ import { contourRings, hashString } from "@/lib/contours";
 
 /**
  * Generated terrain artwork for a project, tinted with its accent colour.
- * Rings breathe slowly; parent `.group:hover` speeds the spin up.
+ *
+ * Performance: the ~32-curve contour SVG is its own compositor layer and is only ever
+ * transformed as a whole (hover spin, card tilt), so it rasterises once instead of every
+ * frame. The pulsing marker lives in a separate tiny SVG animated with CSS.
  */
 export function ContourArt({ project, className = "" }: { project: Project; className?: string }) {
   const seed = hashString(project.slug);
@@ -18,23 +21,23 @@ export function ContourArt({ project, className = "" }: { project: Project; clas
   );
   return (
     <div className={`relative overflow-hidden ${className}`} style={{ background: project.color }}>
-      <svg viewBox="0 0 600 450" preserveAspectRatio="xMidYMid slice" className="absolute inset-0 h-full w-full" aria-hidden>
-        <g
-          className="origin-center transition-transform duration-[1.6s] ease-[cubic-bezier(.2,.7,.2,1)] group-hover:rotate-[14deg] group-hover:scale-[1.18]"
-          style={{ transformOrigin: `${px}px ${py}px` }}
-          fill="none"
-          stroke="#0d0e0b"
-        >
+      <svg
+        viewBox="0 0 600 450"
+        preserveAspectRatio="xMidYMid slice"
+        className="absolute inset-0 h-full w-full transition-transform duration-[1.6s] ease-[cubic-bezier(.2,.7,.2,1)] will-change-transform group-hover:rotate-[14deg] group-hover:scale-[1.18]"
+        style={{ transformOrigin: `${(px / 6).toFixed(2)}% ${(py / 4.5).toFixed(2)}%` }}
+        aria-hidden
+      >
+        <g fill="none" stroke="#0d0e0b">
           {rings.map((r, i) => (
             <path key={i} d={r.d} strokeWidth={r.major ? 2.2 : 1} strokeOpacity={r.major ? 0.85 : 0.45} />
           ))}
         </g>
+      </svg>
+      <svg viewBox="0 0 600 450" preserveAspectRatio="xMidYMid slice" className="absolute inset-0 h-full w-full" aria-hidden>
         <g transform={`translate(${px} ${py})`}>
           <circle r="7" fill="#0d0e0b" />
-          <circle r="16" fill="none" stroke="#0d0e0b" strokeWidth="1.5">
-            <animate attributeName="r" values="8;30;8" dur="2.8s" repeatCount="indefinite" />
-            <animate attributeName="stroke-opacity" values="1;0;1" dur="2.8s" repeatCount="indefinite" />
-          </circle>
+          <circle r="30" fill="none" stroke="#0d0e0b" strokeWidth="1.5" className="contour-pulse" />
         </g>
       </svg>
       <span className="absolute left-4 top-4 font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-bg">

@@ -28,7 +28,7 @@ export function HorizontalWork() {
             start: "top top",
             end: () => `+=${dist()}`,
             pin: true,
-            scrub: 0.8,
+            scrub: 0.5, // Lenis already smooths; more lag here feels heavy
             invalidateOnRefresh: true,
             onUpdate: (s) => gsap.set(bar.current, { scaleX: s.progress }),
           },
@@ -73,7 +73,7 @@ export function HorizontalWork() {
             href={`/projects/${p.slug}`}
             data-cursor="View"
             data-cursor-color={p.color}
-            className="hw-card group flex flex-col min-[900px]:w-[min(44vw,620px)]"
+            className="hw-card group flex flex-col will-change-transform min-[900px]:w-[min(44vw,620px)]"
           >
             <ContourArt project={p} className="aspect-[4/3] rounded-2xl" />
             <div className="mt-4 flex items-start justify-between gap-4">

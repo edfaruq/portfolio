@@ -60,6 +60,7 @@ export function Cursor() {
     let hover = false;
     let down = false;
     let size = 26;
+    let painted = false;
 
     const move = (e: PointerEvent) => {
       mouse.x = e.clientX;
@@ -139,15 +140,26 @@ export function Cursor() {
         scaleY: 1 / Math.sqrt(stretch),
       });
 
-      // Canvas: tail + particles.
-      ctx.clearRect(0, 0, innerWidth, innerHeight);
-      if (!reduced && mouse.seen) {
+      // Canvas: tail + particles. Skip the full-screen redraw entirely while nothing moves.
+      const tail = !reduced && mouse.seen;
+      if (tail) {
         trail[0].x += (mouse.x - trail[0].x) * 0.5;
         trail[0].y += (mouse.y - trail[0].y) * 0.5;
         for (let i = 1; i < TRAIL; i++) {
           trail[i].x += (trail[i - 1].x - trail[i].x) * 0.45;
           trail[i].y += (trail[i - 1].y - trail[i].y) * 0.45;
         }
+      }
+      const end = trail[TRAIL - 1];
+      const moving = tail && Math.abs(end.x - mouse.x) + Math.abs(end.y - mouse.y) > 0.5;
+      if (!moving && !parts.length) {
+        if (painted) ctx.clearRect(0, 0, innerWidth, innerHeight);
+        painted = false;
+        return;
+      }
+      painted = true;
+      ctx.clearRect(0, 0, innerWidth, innerHeight);
+      if (tail) {
         // Skip the first points so the tail starts behind the pointer, not on it.
         for (let i = 3; i < TRAIL; i++) {
           const t = 1 - i / TRAIL;
