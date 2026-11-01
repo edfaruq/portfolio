@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     default: `${profile.name} · ${profile.role}`,
     template: `%s · ${profile.shortName}`,
   },
-  description: profile.tagline,
+  description: `${profile.name}, ${profile.role.toLowerCase()} in Indonesia. ${profile.tagline}`,
   authors: [{ name: profile.name }],
   openGraph: { type: "website", siteName: profile.name, locale: "en_US" },
 };

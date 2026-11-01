@@ -74,7 +74,7 @@ export function DrillCore() {
               </>
             );
             return (
-              <li key={s.org + s.period} className="dc-row grid grid-cols-[clamp(4.5rem,14vw,11rem)_1fr] border-b border-line">
+              <li key={s.org + s.period} className="dc-row grid overflow-x-clip grid-cols-[clamp(4.5rem,14vw,11rem)_1fr] border-b border-line">
                 <div
                   className={`dc-layer ${tex[s.kind]} min-h-32 border-r border-bg/40`}
                   style={{ backgroundColor: fill[s.kind] }}
