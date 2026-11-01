@@ -23,7 +23,10 @@ export function Footer() {
       <Marquee speed={90} className="border-b border-bg/20 py-6">
         {Array.from({ length: 4 }).map((_, i) => (
           <span key={i} className="flex items-center gap-8 pr-8 font-display text-[13vw] font-bold leading-none tracking-tighter sm:text-[9vw]">
-            Let&apos;s build something <span className="spin-slow inline-block">✺</span>
+            Let&apos;s build something{" "}
+            <svg viewBox="0 0 24 24" aria-hidden className="spin-slow inline-block size-[0.8em] shrink-0 fill-current">
+              <path d="M12 1.5l3.09 6.26 6.91 1-5 4.87 1.18 6.88L12 17.27l-6.18 3.24L7 13.63 2 8.76l6.91-1z" />
+            </svg>
           </span>
         ))}
       </Marquee>

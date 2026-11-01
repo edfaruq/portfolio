@@ -30,10 +30,11 @@ export function Marquee({
       let boost = 0;
       const skewTo = gsap.quickTo(el, "skewX", { duration: 0.4, ease: "power3" });
 
+      // Velocity comes from a page-wide trigger, visibility from an IntersectionObserver, so a
+      // pinned section above (which shifts everything below it) can never leave this stuck.
       const st = ScrollTrigger.create({
-        trigger: root.current,
-        start: "top bottom",
-        end: "bottom top",
+        start: 0,
+        end: "max",
         onUpdate: (self) => {
           const v = self.getVelocity();
           boost = Math.min(Math.abs(v) / 200, 12);
@@ -46,10 +47,13 @@ export function Marquee({
       let half = el.scrollWidth / 2;
       const ro = new ResizeObserver(() => (half = el.scrollWidth / 2));
       ro.observe(el);
+      let visible = false;
+      const io = new IntersectionObserver(([e]) => (visible = e.isIntersecting));
+      io.observe(root.current!);
       const setX = gsap.quickSetter(el, "x", "px");
 
       const tick = (_t: number, dt: number) => {
-        if (!st.isActive || !half) return; // offscreen: do nothing
+        if (!visible || !half) return; // offscreen: do nothing
         x += dir * (speed / 1000) * dt * (1 + boost);
         boost *= 0.92;
         if (x <= -half) x += half;
@@ -61,6 +65,7 @@ export function Marquee({
       return () => {
         gsap.ticker.remove(tick);
         ro.disconnect();
+        io.disconnect();
         st.kill();
       };
     },
