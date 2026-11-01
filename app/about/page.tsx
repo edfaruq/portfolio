@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import { FieldPass } from "@/components/fx/FieldPass";
 import { Magnetic } from "@/components/fx/Magnetic";
+import { PhotoStack } from "@/components/fx/PhotoStack";
 import { Marquee } from "@/components/fx/Marquee";
 import { Reveal } from "@/components/fx/Reveal";
 import { ScrollWords } from "@/components/fx/ScrollWords";
 import { SplitText } from "@/components/fx/SplitText";
 import { Container, Eyebrow } from "@/components/ui";
 import { certifications, education, organization, profile, skills } from "@/content/profile";
+import { getProject } from "@/content/projects";
 
 export const metadata: Metadata = {
   title: "About",
@@ -14,6 +16,12 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
+  const kkn = getProject("semarang-hazard-webgis")!;
+  const thesis = getProject("b2b-exporter-ecommerce")!;
+  const notes = [
+    { p: kkn, text: "A hazard-mapping WebGIS built with residents of West Semarang, from fieldwork to the award stage." },
+    { p: thesis, text: "Thesis on a B2B exporter e-commerce app for PT Telaga Cipta, then the gown and the sash." },
+  ];
   return (
     <>
       <Container className="pb-20 pt-36 sm:pt-44">
@@ -108,6 +116,21 @@ export default function AboutPage() {
             </Reveal>
           </div>
         </section>
+      </Container>
+
+      <Container className="pb-32">
+        <Eyebrow>Field notes</Eyebrow>
+        <div className="mt-10 grid gap-20 lg:grid-cols-2 lg:gap-12">
+          {notes.map(({ p, text }) => (
+            <section key={p.slug} className="flex flex-col">
+              <h2 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">{p.gallery!.title}</h2>
+              <p className="mt-2 max-w-md text-fg-dim">{text}</p>
+              <div className="mt-6">
+                <PhotoStack photos={p.gallery!.photos} accent={p.color} />
+              </div>
+            </section>
+          ))}
+        </div>
       </Container>
 
       <Container className="pb-32">

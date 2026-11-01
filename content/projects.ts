@@ -7,6 +7,8 @@ export const sectors: Record<Sector, { label: string; symbol: string }> = {
   academic: { label: "Academic", symbol: "◇" },
 };
 
+export type Photo = { src: string; width: number; height: number; alt: string; caption: string };
+
 export type Project = {
   slug: string;
   code: string; // survey-style site code, e.g. "SMG-01"
@@ -25,6 +27,8 @@ export type Project = {
   metrics: { value: string; label: string }[];
   stack: string[];
   link?: string;
+  /** Photos shown as a draggable polaroid stack. */
+  gallery?: { title: string; photos: Photo[] };
 };
 
 export const projects: Project[] = [
@@ -58,6 +62,15 @@ export const projects: Project[] = [
     ],
     stack: ["Next.js", "React", "Leaflet"],
     link: "https://github.com/edfaruq/webgis-semarang-barat",
+    gallery: {
+      title: "KKN-T 35 KATANA",
+      photos: [
+        { src: "/images/gallery/kkn-award.jpg", width: 960, height: 1200, alt: "Three team members on stage at Gelar Karya KKN UNDIP holding the Best Program award board and a laptop showing the WebGIS", caption: "Best Program · Gelar Karya" },
+        { src: "/images/gallery/kkn-field-team.jpg", width: 1280, height: 800, alt: "The KKN team outdoors holding framed hazard maps and printed posters", caption: "Maps, printed & delivered" },
+        { src: "/images/gallery/kkn-kecamatan.jpg", width: 720, height: 900, alt: "Three team members in front of the Kantor Kecamatan Semarang Barat building", caption: "Kecamatan Semarang Barat" },
+        { src: "/images/gallery/kkn-gelar-karya.jpg", width: 720, height: 900, alt: "A large crowd of KKN students celebrating in a hall with a certificate and the award board", caption: "The whole cohort, celebrating" },
+      ],
+    },
   },
   {
     slug: "cidata-mining-platform",
@@ -171,6 +184,13 @@ export const projects: Project[] = [
     metrics: [{ value: "ICONIX", label: "design process" }],
     stack: ["Web application", "ICONIX / UML"],
     link: "https://github.com/edfaruq/b2b-telagacipta",
+    gallery: {
+      title: "Thesis & graduation",
+      photos: [
+        { src: "/images/gallery/thesis-graduation.jpg", width: 960, height: 1200, alt: "Faruq on campus wearing a maroon graduation sash reading M. Anshar Al Faruq, S.Kom., holding a bouquet", caption: "M. Anshar Al Faruq, S.Kom." },
+        { src: "/images/gallery/thesis-gown.jpg", width: 960, height: 1200, alt: "Faruq in a black graduation gown with a blue hood, leaning on a railing and smiling", caption: "Wisuda · Universitas Diponegoro" },
+      ],
+    },
   },
 ];
 

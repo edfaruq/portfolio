@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { ContourArt } from "@/components/ContourArt";
 import { CountUp } from "@/components/fx/CountUp";
 import { Magnetic } from "@/components/fx/Magnetic";
+import { PhotoStack } from "@/components/fx/PhotoStack";
 import { Parallax, Reveal } from "@/components/fx/Reveal";
 import { SplitText } from "@/components/fx/SplitText";
 import { Container, Eyebrow } from "@/components/ui";
@@ -129,6 +130,19 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
           )}
         </div>
       </Container>
+
+      {p.gallery && (
+        <Container className="grid items-center gap-12 border-t border-line py-24 lg:grid-cols-[1fr_1.3fr]">
+          <div>
+            <Eyebrow>From the field</Eyebrow>
+            <h2 className="mt-6 font-display text-4xl font-bold tracking-tight sm:text-6xl">{p.gallery.title}</h2>
+            <p className="mt-4 max-w-sm text-fg-dim">
+              {p.gallery.photos.length} photos. Toss them around.
+            </p>
+          </div>
+          <PhotoStack photos={p.gallery.photos} accent={p.color} />
+        </Container>
+      )}
 
       {/* Next project */}
       <Link
