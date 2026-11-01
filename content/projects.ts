@@ -57,6 +57,7 @@ export const projects: Project[] = [
       { value: "127", label: "shelters" },
     ],
     stack: ["Next.js", "React", "Leaflet"],
+    link: "https://github.com/edfaruq/webgis-semarang-barat",
   },
   {
     slug: "cidata-mining-platform",
@@ -87,6 +88,7 @@ export const projects: Project[] = [
       { value: "70+", label: "search keywords" },
     ],
     stack: ["Laravel", "Inertia.js", "React", "TypeScript"],
+    link: "https://cidatamining.com/",
   },
   {
     slug: "pertagas-security-dashboard",
@@ -168,6 +170,7 @@ export const projects: Project[] = [
     ],
     metrics: [{ value: "ICONIX", label: "design process" }],
     stack: ["Web application", "ICONIX / UML"],
+    link: "https://github.com/edfaruq/b2b-telagacipta",
   },
 ];
 
