@@ -125,6 +125,21 @@ export default function AboutPage() {
               <h2 className="mt-2 font-display text-2xl font-bold tracking-tight">{organization.name}</h2>
               <p className="text-fg-dim">{organization.role}</p>
               <p className="mt-3 leading-relaxed">{organization.summary}</p>
+              <div className="mt-5 flex flex-wrap gap-3">
+                {organization.certificates.map((c) => (
+                  <a
+                    key={c.pdf}
+                    href={c.pdf}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-cursor="View PDF"
+                    aria-label={`HMIF certificate, ${c.label}: open PDF in a new tab`}
+                    className="inline-flex h-10 items-center gap-2 rounded-full border border-line px-4 font-mono text-xs uppercase tracking-widest transition-colors hover:border-fg hover:bg-fg hover:text-bg"
+                  >
+                    Certificate · {c.label} ↗
+                  </a>
+                ))}
+              </div>
             </Reveal>
           </div>
         </section>

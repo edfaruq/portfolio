@@ -55,6 +55,10 @@ export const organization = {
   period: "Feb 2023 – Feb 2025",
   summary:
     "Organised performances and workshops for students in the arts, and mentored junior members of the division.",
+  certificates: [
+    { label: "2023 term", pdf: "/certificates/hmif-2023-seni-olahraga.pdf" },
+    { label: "2024 term", pdf: "/certificates/hmif-2024-seni-olahraga.pdf" },
+  ],
 };
 
 /** Career layers for the core-sample timeline, newest on top. */
