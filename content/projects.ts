@@ -133,7 +133,7 @@ export const projects: Project[] = [
     ],
     stack: ["Laravel", "Sophos Central API", "PDF/CSV export"],
     gallery: {
-      title: "Pertagas internship",
+      title: "Pertagas & Internship",
       photos: [
         { src: "/images/gallery/pertagas-team.jpg", width: 1280, height: 960, alt: "Faruq with the Pertamina Gas team giving thumbs up in front of the company's establishment wall", caption: "The team · Pertamina Gas" },
         { src: "/images/gallery/pertagas-interns.jpg", width: 960, height: 1200, alt: "Four interns with MAGANG lanyards posing playfully in front of the Pertamina logo", caption: "Magang crew" },
@@ -194,10 +194,11 @@ export const projects: Project[] = [
     stack: ["Web application", "ICONIX / UML"],
     link: "https://github.com/edfaruq/b2b-telagacipta",
     gallery: {
-      title: "Thesis & graduation",
+      title: "Thesis Defense & Graduation",
       photos: [
         { src: "/images/gallery/thesis-graduation.jpg", width: 960, height: 1200, alt: "Faruq on campus wearing a maroon graduation sash reading M. Anshar Al Faruq, S.Kom., holding a bouquet", caption: "M. Anshar Al Faruq, S.Kom." },
-        { src: "/images/gallery/thesis-gown.jpg", width: 960, height: 1200, alt: "Faruq in a black graduation gown with a blue hood, leaning on a railing and smiling", caption: "Wisuda · Universitas Diponegoro" },
+        { src: "/images/gallery/thesis-gown.jpg", width: 960, height: 1200, alt: "Faruq in a black graduation gown with a blue hood, leaning on a railing and smiling", caption: "Graduation Day · Universitas Diponegoro" },
+        { src: "/images/gallery/thesis-class.jpg", width: 960, height: 1200, alt: "Faruq and six classmates in graduation caps and gowns pulling playful faces", caption: "Class of 2026, caps on" },
       ],
     },
   },

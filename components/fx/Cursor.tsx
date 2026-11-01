@@ -11,14 +11,12 @@ function inkFor(hex: string | null) {
 }
 
 const TRAIL = 14;
-const COLORS = ["#d4ff3a", "#ff5b1f", "#f1ece0", "#7c9cff", "#ffc83a"];
 
 /**
  * Decorative cursor layer. The real pointer is an OS-drawn custom cursor (see globals.css),
  * so clicks stay exact; everything here trails behind it:
  *  - a jelly blob that stretches with speed and swells over links (mix-blend: difference)
  *  - a lime particle tail
- *  - a ✺ burst on every click
  *  - a label pill (data-cursor="…") offset below-right
  */
 export function Cursor() {
@@ -55,8 +53,6 @@ export function Cursor() {
     const mouse = { x: innerWidth / 2, y: innerHeight / 2, seen: false };
     const pos = { x: mouse.x, y: mouse.y };
     const trail = Array.from({ length: TRAIL }, () => ({ x: mouse.x, y: mouse.y }));
-    type P = { x: number; y: number; vx: number; vy: number; life: number; c: string; r: number; star: boolean };
-    let parts: P[] = [];
     let hover = false;
     let down = false;
     let size = 26;
@@ -81,40 +77,12 @@ export function Cursor() {
       hover = !!target?.closest("a,button,[role=button],[data-cursor]");
     };
 
-    const burst = (e: PointerEvent) => {
-      down = true;
-      if (reduced) return;
-      const n = 14;
-      for (let i = 0; i < n; i++) {
-        const a = (i / n) * Math.PI * 2 + Math.random() * 0.4;
-        const s = 3 + Math.random() * 5;
-        parts.push({
-          x: e.clientX,
-          y: e.clientY,
-          vx: Math.cos(a) * s,
-          vy: Math.sin(a) * s - 1.5,
-          life: 1,
-          c: COLORS[i % COLORS.length],
-          r: 2 + Math.random() * 3,
-          star: i % 3 === 0,
-        });
-      }
-    };
+    const press = () => (down = true);
     const up = () => (down = false);
     const leave = () => {
       mouse.seen = false;
       gsap.to(b, { opacity: 0, duration: 0.3 });
       setLabel(null);
-    };
-
-    const star = (x: number, y: number, r: number, rot: number) => {
-      ctx.beginPath();
-      for (let i = 0; i < 8; i++) {
-        const a = rot + (i / 8) * Math.PI * 2;
-        ctx.moveTo(x, y);
-        ctx.lineTo(x + Math.cos(a) * r * 2.2, y + Math.sin(a) * r * 2.2);
-      }
-      ctx.stroke();
     };
 
     const tick = () => {
@@ -140,7 +108,7 @@ export function Cursor() {
         scaleY: 1 / Math.sqrt(stretch),
       });
 
-      // Canvas: tail + particles. Skip the full-screen redraw entirely while nothing moves.
+      // Canvas: tail. Skip the full-screen redraw entirely while nothing moves.
       const tail = !reduced && mouse.seen;
       if (tail) {
         trail[0].x += (mouse.x - trail[0].x) * 0.5;
@@ -152,7 +120,7 @@ export function Cursor() {
       }
       const end = trail[TRAIL - 1];
       const moving = tail && Math.abs(end.x - mouse.x) + Math.abs(end.y - mouse.y) > 0.5;
-      if (!moving && !parts.length) {
+      if (!moving) {
         if (painted) ctx.clearRect(0, 0, innerWidth, innerHeight);
         painted = false;
         return;
@@ -169,38 +137,18 @@ export function Cursor() {
           ctx.fill();
         }
       }
-      parts = parts.filter((p) => p.life > 0);
-      for (const p of parts) {
-        p.x += p.vx;
-        p.y += p.vy;
-        p.vy += 0.18;
-        p.vx *= 0.97;
-        p.life -= 0.022;
-        ctx.globalAlpha = Math.max(p.life, 0);
-        if (p.star) {
-          ctx.strokeStyle = p.c;
-          ctx.lineWidth = 1.6;
-          star(p.x, p.y, p.r, p.life * 4);
-        } else {
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-          ctx.fillStyle = p.c;
-          ctx.fill();
-        }
-      }
-      ctx.globalAlpha = 1;
     };
 
     gsap.ticker.add(tick);
     window.addEventListener("pointermove", move);
-    window.addEventListener("pointerdown", burst);
+    window.addEventListener("pointerdown", press);
     window.addEventListener("pointerup", up);
     window.addEventListener("resize", resize);
     document.documentElement.addEventListener("pointerleave", leave);
     return () => {
       gsap.ticker.remove(tick);
       window.removeEventListener("pointermove", move);
-      window.removeEventListener("pointerdown", burst);
+      window.removeEventListener("pointerdown", press);
       window.removeEventListener("pointerup", up);
       window.removeEventListener("resize", resize);
       document.documentElement.removeEventListener("pointerleave", leave);
