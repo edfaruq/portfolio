@@ -122,9 +122,10 @@ export default function AboutPage() {
 
       <Container className="pb-32">
         <Eyebrow>Field notes</Eyebrow>
-        <div className="mt-10 grid gap-20 md:grid-cols-2 md:gap-12 xl:grid-cols-3">
+        {/* Each note spans three shared rows (title, text, photos) so the stacks line up across columns. */}
+        <div className="mt-10 grid gap-x-12 gap-y-20 md:grid-cols-2 xl:grid-cols-3">
           {notes.map(({ p, text }) => (
-            <section key={p.slug} className="flex flex-col">
+            <section key={p.slug} className="row-span-3 grid grid-rows-subgrid content-start gap-y-0">
               <h2 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">{p.gallery!.title}</h2>
               <p className="mt-2 max-w-md text-fg-dim">{text}</p>
               <div className="mt-6">
