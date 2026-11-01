@@ -18,8 +18,10 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   const kkn = getProject("semarang-hazard-webgis")!;
   const thesis = getProject("b2b-exporter-ecommerce")!;
+  const pertagas = getProject("pertagas-security-dashboard")!;
   const notes = [
     { p: kkn, text: "A hazard-mapping WebGIS built with residents of West Semarang, from fieldwork to the award stage." },
+    { p: pertagas, text: "Interning at Pertamina Gas: a Sophos security dashboard, and a great crew to build it with." },
     { p: thesis, text: "Thesis on a B2B exporter e-commerce app for PT Telaga Cipta, then the gown and the sash." },
   ];
   return (
@@ -120,7 +122,7 @@ export default function AboutPage() {
 
       <Container className="pb-32">
         <Eyebrow>Field notes</Eyebrow>
-        <div className="mt-10 grid gap-20 lg:grid-cols-2 lg:gap-12">
+        <div className="mt-10 grid gap-20 md:grid-cols-2 md:gap-12 xl:grid-cols-3">
           {notes.map(({ p, text }) => (
             <section key={p.slug} className="flex flex-col">
               <h2 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">{p.gallery!.title}</h2>

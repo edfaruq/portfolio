@@ -132,6 +132,15 @@ export const projects: Project[] = [
       { value: "2", label: "access roles" },
     ],
     stack: ["Laravel", "Sophos Central API", "PDF/CSV export"],
+    gallery: {
+      title: "Pertagas internship",
+      photos: [
+        { src: "/images/gallery/pertagas-team.jpg", width: 1280, height: 960, alt: "Faruq with the Pertamina Gas team giving thumbs up in front of the company's establishment wall", caption: "The team · Pertamina Gas" },
+        { src: "/images/gallery/pertagas-interns.jpg", width: 960, height: 1200, alt: "Four interns with MAGANG lanyards posing playfully in front of the Pertamina logo", caption: "Magang crew" },
+        { src: "/images/gallery/pertagas-coffee.jpg", width: 720, height: 900, alt: "A group selfie of interns working on laptops at a long café table", caption: "Laptops out, coffee in" },
+        { src: "/images/gallery/pertagas-after-hours.jpg", width: 960, height: 1200, alt: "Faruq and two friends pulling funny faces at night", caption: "After hours" },
+      ],
+    },
   },
   {
     slug: "kristalin-corporate-site",
