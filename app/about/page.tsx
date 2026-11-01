@@ -95,16 +95,26 @@ export default function AboutPage() {
           <Eyebrow>Certifications</Eyebrow>
           <Reveal className="mt-6 border-t border-line">
             {certifications.map((c) => (
-              <div key={c.title} className="group relative overflow-hidden border-b border-line">
+              <a
+                key={c.title}
+                href={c.pdf}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cursor="View PDF"
+                aria-label={`${c.title}, ${c.issuer}, ${c.year}: open certificate PDF in a new tab`}
+                className="group relative block overflow-hidden border-b border-line"
+              >
                 <span aria-hidden className="absolute inset-0 origin-left scale-x-0 bg-fg transition-transform duration-500 ease-[cubic-bezier(.7,0,.2,1)] group-hover:scale-x-100" />
                 <div className="relative flex items-baseline justify-between gap-4 py-6 transition-colors duration-300 group-hover:text-bg">
                   <span>
                     <span className="block font-display text-xl font-semibold leading-tight">{c.title}</span>
-                    <span className="font-mono text-xs uppercase tracking-widest opacity-60">{c.issuer}</span>
+                    <span className="font-mono text-xs uppercase tracking-widest opacity-60">
+                      {c.issuer} · <span className="underline decoration-1 underline-offset-4">PDF ↗</span>
+                    </span>
                   </span>
                   <span className="font-display text-3xl font-bold">{c.year}</span>
                 </div>
-              </div>
+              </a>
             ))}
           </Reveal>
 

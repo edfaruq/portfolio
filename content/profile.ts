@@ -35,12 +35,18 @@ export const education = {
 
 export const certifications = [
   {
-    title: "Alibaba Cloud Certificate Associate: Cloud Computing",
+    title: "Alibaba Cloud Certified Associate: Cloud Computing",
     issuer: "Alibaba Cloud",
     year: "2024",
+    pdf: "/certificates/alibaba-cloud-aca-cloud-computing.pdf",
   },
-  { title: "Database Programming with SQL", issuer: "Oracle Academy", year: "2024" },
-  { title: "Database Design", issuer: "Oracle Academy", year: "2023" },
+  {
+    title: "Database Programming with SQL",
+    issuer: "Oracle Academy",
+    year: "2024",
+    pdf: "/certificates/oracle-database-programming-with-sql.pdf",
+  },
+  { title: "Database Design", issuer: "Oracle Academy", year: "2023", pdf: "/certificates/oracle-database-design.pdf" },
 ];
 
 export const organization = {
