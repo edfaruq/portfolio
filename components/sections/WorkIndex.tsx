@@ -1,16 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { type ReactNode, useRef, useState } from "react";
 import { projects, sectors, type Sector } from "@/content/projects";
 import { gsap, isFinePointer, useGSAP } from "@/lib/motion";
-import { ContourArt } from "../ContourArt";
 
 /**
  * Big-type project index. On desktop a preview card follows the pointer,
  * swapping artwork per row; rows fill with the project colour on hover.
  */
-export function WorkIndex() {
+/** `arts`: a server-rendered ContourArt per project slug. */
+export function WorkIndex({ arts }: { arts: Record<string, ReactNode> }) {
   const root = useRef<HTMLDivElement>(null);
   const preview = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState<number | null>(null);
@@ -121,7 +121,7 @@ export function WorkIndex() {
             className="absolute inset-0 transition-[clip-path] duration-500 ease-[cubic-bezier(.7,0,.2,1)]"
             style={{ clipPath: active === i ? "inset(0 0 0 0)" : "inset(100% 0 0 0)" }}
           >
-            <ContourArt project={p} className="h-full w-full" />
+            {arts[p.slug]}
           </div>
         ))}
       </div>

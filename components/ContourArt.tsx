@@ -1,24 +1,33 @@
 import type { Project } from "@/content/projects";
 import { contourRings, hashString } from "@/lib/contours";
+import { formatCoords, getTerrain } from "@/lib/terrain";
 
 /**
- * Generated terrain artwork for a project, tinted with its accent colour.
+ * Terrain artwork for a project, tinted with its accent colour. Uses real contour lines
+ * around the project's location (lib/terrain.ts) with the marker on the site itself, and
+ * falls back to generated rings for projects without terrain data.
+ *
+ * Render it on the server and hand it to client components as a prop, so the contour
+ * data stays out of the JS bundle.
  *
  * Performance: the ~32-curve contour SVG is its own compositor layer and is only ever
  * transformed as a whole (hover spin, card tilt), so it rasterises once instead of every
  * frame. The pulsing marker lives in a separate tiny SVG animated with CSS.
  */
 export function ContourArt({ project, className = "" }: { project: Project; className?: string }) {
+  const terrain = getTerrain(project.slug);
   const seed = hashString(project.slug);
-  const px = 220 + (seed % 160);
-  const py = 160 + ((seed >> 8) % 80);
-  const rings = contourRings(
-    [
-      { x: px, y: py, rings: 20, step: 13, start: 6 },
-      { x: 600 - px * 0.5, y: 420 - py * 0.4, rings: 12, step: 15 },
-    ],
-    seed,
-  );
+  const px = terrain ? 300 : 220 + (seed % 160);
+  const py = terrain ? 225 : 160 + ((seed >> 8) % 80);
+  const rings =
+    terrain?.paths ??
+    contourRings(
+      [
+        { x: px, y: py, rings: 20, step: 13, start: 6 },
+        { x: 600 - px * 0.5, y: 420 - py * 0.4, rings: 12, step: 15 },
+      ],
+      seed,
+    );
   return (
     <div className={`relative overflow-hidden ${className}`} style={{ background: project.color }}>
       <svg
@@ -43,6 +52,14 @@ export function ContourArt({ project, className = "" }: { project: Project; clas
       <span className="absolute left-4 top-4 font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-bg">
         {project.code}
       </span>
+      {terrain && (
+        <span
+          className="absolute bottom-3 left-3 rounded-full px-2 py-0.5 font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-bg"
+          style={{ background: project.color }}
+        >
+          {formatCoords(terrain.lat, terrain.lon)} · {terrain.min}–{terrain.max} m
+        </span>
+      )}
     </div>
   );
 }

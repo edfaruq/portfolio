@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ContourArt } from "@/components/ContourArt";
 import { SplitText } from "@/components/fx/SplitText";
 import { WorkIndex } from "@/components/sections/WorkIndex";
 import { Container, Eyebrow } from "@/components/ui";
@@ -19,7 +20,11 @@ export default function ProjectsPage() {
         <SplitText text="work." trigger="load" delay={0.1} playful className="block text-[16vw] text-lime sm:text-[11vw]" />
       </h1>
       <div className="mt-16">
-        <WorkIndex />
+        <WorkIndex
+          arts={Object.fromEntries(
+            projects.map((p) => [p.slug, <ContourArt key={p.slug} project={p} className="h-full w-full" />]),
+          )}
+        />
       </div>
     </Container>
   );

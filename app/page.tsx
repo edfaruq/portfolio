@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CompanyLogo } from "@/components/CompanyLogo";
+import { ContourArt } from "@/components/ContourArt";
 import { CountUp } from "@/components/fx/CountUp";
 import { Marquee } from "@/components/fx/Marquee";
 import { ScrollWords } from "@/components/fx/ScrollWords";
@@ -77,7 +78,11 @@ export default function Home() {
         </dl>
       </Container>
 
-      <HorizontalWork />
+      <HorizontalWork
+        arts={Object.fromEntries(
+          projects.map((p) => [p.slug, <ContourArt key={p.slug} project={p} className="aspect-[4/3] rounded-2xl" />]),
+        )}
+      />
 
       {/* Logo strip: runs right to left, full bleed. */}
       <section aria-label="Clients and teams I've worked with" className="relative min-[900px]:-mt-12">

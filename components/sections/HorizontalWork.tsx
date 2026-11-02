@@ -1,14 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { useRef } from "react";
+import { type ReactNode, useRef } from "react";
 import { projects } from "@/content/projects";
 import { gsap, prefersReducedMotion, ScrollTrigger, useGSAP } from "@/lib/motion";
-import { ContourArt } from "../ContourArt";
 import { CountUp } from "../fx/CountUp";
 
 /** Pinned section: vertical scroll drives a horizontal strip of project cards (desktop). */
-export function HorizontalWork() {
+/** `arts`: a server-rendered ContourArt per project slug. */
+export function HorizontalWork({ arts }: { arts: Record<string, ReactNode> }) {
   const root = useRef<HTMLElement>(null);
   const track = useRef<HTMLDivElement>(null);
   const bar = useRef<HTMLDivElement>(null);
@@ -75,7 +75,7 @@ export function HorizontalWork() {
             data-cursor-color={p.color}
             className="hw-card group flex flex-col will-change-transform min-[900px]:w-[min(44vw,620px)]"
           >
-            <ContourArt project={p} className="aspect-[4/3] rounded-2xl" />
+            {arts[p.slug]}
             <div className="mt-4 flex items-start justify-between gap-4">
               <div>
                 <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-fg-dim">

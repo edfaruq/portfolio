@@ -48,7 +48,7 @@ export const projects: Project[] = [
     sector: "disaster",
     role: "Developer & field surveyor",
     period: "2025",
-    place: { name: "West Semarang", lon: 110.38, lat: -6.98 },
+    place: { name: "West Semarang", lon: 110.39, lat: -6.985 },
     award: "Best Program Award, Gelar Karya KKN UNDIP",
     featured: true,
     summary:
@@ -90,7 +90,7 @@ export const projects: Project[] = [
     sector: "mining",
     role: "Full-Stack Web Developer",
     period: "Aug – Dec 2025",
-    place: { name: "Jakarta", lon: 106.85, lat: -6.2 },
+    place: { name: "Jakarta", lon: 106.8199, lat: -6.2917 },
     featured: true,
     summary:
       "A production full-stack platform for a mining-services company, with a heavy-equipment catalog in Indonesian, English and Mandarin.",
@@ -123,7 +123,7 @@ export const projects: Project[] = [
     sector: "energy",
     role: "General Support Intern",
     period: "Jan – Feb 2025",
-    place: { name: "Jakarta", lon: 106.85, lat: -6.2 },
+    place: { name: "Jakarta", lon: 106.8312, lat: -6.1772 },
     featured: true,
     summary:
       "A Laravel dashboard that pulls alerts, SIEM, endpoint and XDR data from Sophos Central into one near real-time view.",
@@ -164,7 +164,7 @@ export const projects: Project[] = [
     sector: "mining",
     role: "Full-Stack Web Developer",
     period: "Jul – Dec 2025",
-    place: { name: "Jakarta", lon: 106.85, lat: -6.2 },
+    place: { name: "Jakarta", lon: 106.8199, lat: -6.2917 },
     featured: false,
     summary:
       "An 18-page corporate profile site in Indonesian, English and Mandarin for employees and external clients.",
@@ -195,7 +195,7 @@ export const projects: Project[] = [
     sector: "academic",
     role: "Undergraduate thesis",
     period: "2026",
-    place: { name: "Semarang", lon: 110.44, lat: -7.05 },
+    place: { name: "Semarang", lon: 110.4384, lat: -7.0505 },
     featured: false,
     summary:
       "Design and development of a web-based B2B e-commerce application for an exporter, following the ICONIX process.",

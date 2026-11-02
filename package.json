@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "terrain": "node scripts/build-terrain.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
@@ -23,8 +24,10 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/three": "^0.187.0",
+    "d3-contour": "^4.0.2",
     "eslint": "^9",
     "eslint-config-next": "16.4.3",
+    "pngjs": "^7.0.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
