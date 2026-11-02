@@ -76,7 +76,7 @@ export function Marquee({
     <div ref={root} className={`overflow-hidden ${className}`}>
       <div ref={track} className="flex w-max will-change-transform">
         <div className="flex shrink-0 items-center">{children}</div>
-        <div className="flex shrink-0 items-center" aria-hidden>
+        <div className="flex shrink-0 items-center" aria-hidden inert>
           {children}
         </div>
       </div>

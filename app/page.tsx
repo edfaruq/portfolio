@@ -12,7 +12,7 @@ import { skills } from "@/content/profile";
 import { projects } from "@/content/projects";
 
 const numbers = [
-  { value: "3", label: "Industry clients", note: "2 mining · 1 energy" },
+  { value: "3", label: "Industry clients", note: "2 mining · 1 exporter" },
   { value: "127", label: "Shelters mapped", note: "West Semarang WebGIS" },
   { value: "1,700+", label: "Translation keys", note: "per locale · ID / EN / ZH" },
   { value: "4", label: "Security feeds", note: "unified in one dashboard" },
@@ -75,26 +75,27 @@ export default function Home() {
             </div>
           ))}
         </dl>
-
-        <p className="mt-16 font-mono text-[11px] uppercase tracking-[0.2em] text-fg-dim">Worked with</p>
-        <ul className="mt-6 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-3">
-          {companies.map((p) => (
-            <li key={p.slug} className="bg-bg">
-              <Link
-                href={`/projects/${p.slug}`}
-                data-cursor="Open"
-                data-cursor-color={p.color}
-                className="group relative flex h-44 items-center justify-center text-fg transition-colors duration-500 hover:bg-fg sm:h-52"
-              >
-                <CompanyLogo logo={p.logo!} name={p.client} area={84} reveal />
-                <span className="absolute inset-x-4 bottom-4 translate-y-1 text-center font-mono text-[10px] uppercase tracking-[0.2em] text-bg/70 opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                  {p.role} · {p.period}
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
       </Container>
+
+      {/* Logo strip: runs right to left, full bleed. */}
+      <section aria-label="Clients and teams I've worked with" className="pb-28 sm:pb-36">
+        <Container>
+          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-fg-dim">Clients &amp; teams I&apos;ve worked with</p>
+        </Container>
+        <Marquee speed={45} className="mt-10 py-4">
+          {companies.map((p) => (
+            <Link
+              key={p.slug}
+              href={`/projects/${p.slug}`}
+              data-cursor={p.relation === "Client" ? "Client" : "Worked with"}
+              data-cursor-color={p.color}
+              className="flex items-center px-10 text-fg/85 transition-colors duration-300 hover:text-lime sm:px-16"
+            >
+              <CompanyLogo logo={p.logo!} name={p.client} area={88} />
+            </Link>
+          ))}
+        </Marquee>
+      </section>
 
       <HorizontalWork />
       <DrillCore />

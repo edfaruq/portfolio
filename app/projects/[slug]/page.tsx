@@ -75,7 +75,7 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
       <Container>
         <dl className="grid grid-cols-2 border-b border-line sm:grid-cols-4">
           {[
-            ["Client", p.client],
+            [p.relation, p.client],
             ["Role", p.role],
             ["Location", p.place.name],
             ["Stack", p.stack.join(" · ")],

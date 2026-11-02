@@ -17,6 +17,8 @@ export type Project = {
   color: string; // accent used for this project's visuals
   title: string;
   client: string;
+  /** How the organisation is labelled: a paying client, or a team I worked within. */
+  relation: "Client" | "Worked with";
   sector: Sector;
   role: string;
   period: string;
@@ -42,6 +44,7 @@ export const projects: Project[] = [
     color: "#ff5b1f",
     title: "Hazard-Mapping WebGIS for West Semarang",
     client: "KKN-T 35 KATANA · Universitas Diponegoro",
+    relation: "Worked with",
     sector: "disaster",
     role: "Developer & field surveyor",
     period: "2025",
@@ -83,6 +86,7 @@ export const projects: Project[] = [
     color: "#d4ff3a",
     title: "Trilingual Product & Company Platform",
     client: "PT Cidata Mining Servis",
+    relation: "Client",
     sector: "mining",
     role: "Full-Stack Web Developer",
     period: "Aug – Dec 2025",
@@ -115,6 +119,7 @@ export const projects: Project[] = [
     color: "#7c9cff",
     title: "Security Monitoring Dashboard",
     client: "PT Pertamina Gas (Pertagas)",
+    relation: "Worked with",
     sector: "energy",
     role: "General Support Intern",
     period: "Jan – Feb 2025",
@@ -139,7 +144,7 @@ export const projects: Project[] = [
     ],
     stack: ["Laravel", "Sophos Central API", "PDF/CSV export"],
     gallery: {
-      title: "Pertagas & Internship",
+      title: "Pertagas Internship",
       photos: [
         { src: "/images/gallery/pertagas-team.jpg", width: 1280, height: 960, alt: "Faruq with the Pertamina Gas team giving thumbs up in front of the company's establishment wall", caption: "The team · Pertamina Gas" },
         { src: "/images/gallery/pertagas-interns.jpg", width: 960, height: 1200, alt: "Four interns with MAGANG lanyards posing playfully in front of the Pertamina logo", caption: "Magang crew" },
@@ -155,6 +160,7 @@ export const projects: Project[] = [
     color: "#ffc83a",
     title: "Trilingual Corporate Website",
     client: "PT Kristalin Ekalestari",
+    relation: "Client",
     sector: "mining",
     role: "Full-Stack Web Developer",
     period: "Jul – Dec 2025",
@@ -180,10 +186,12 @@ export const projects: Project[] = [
   },
   {
     slug: "b2b-exporter-ecommerce",
+    logo: { src: "/images/logos/telagacipta.png", width: 720, height: 615 },
     code: "SMG-02",
     color: "#ff8fd8",
     title: "B2B Exporter E-Commerce (Thesis)",
-    client: "Case study: PT Telaga Cipta",
+    client: "PT Telaga Cipta Indonesia",
+    relation: "Client",
     sector: "academic",
     role: "Undergraduate thesis",
     period: "2026",
