@@ -65,7 +65,7 @@ export function Header() {
             </Link>
           </Magnetic>
           <div className="hidden font-mono text-[11px] uppercase tracking-[0.18em] md:block">
-            Semarang, ID · <Clock />
+            <Clock />
           </div>
           <nav aria-label="Main" className="hidden sm:block">
             <ul className="flex items-center gap-7 font-mono text-xs uppercase tracking-[0.18em]">
