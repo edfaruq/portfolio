@@ -56,7 +56,7 @@ export function HorizontalWork() {
   );
 
   return (
-    <section ref={root} className="relative overflow-hidden bg-bg py-20 min-[900px]:flex min-[900px]:h-screen min-[900px]:flex-col min-[900px]:justify-center min-[900px]:py-0">
+    <section ref={root} className="relative overflow-hidden bg-bg pb-6 pt-20 min-[900px]:flex min-[900px]:h-screen min-[900px]:flex-col min-[900px]:justify-center min-[900px]:py-0">
       <div className="mx-auto mb-10 flex w-full max-w-[1440px] items-end justify-between px-4 sm:px-8 min-[900px]:mb-8">
         <h2 className="font-display text-5xl font-bold uppercase leading-none tracking-tighter sm:text-7xl">
           Selected <span className="text-outline">work</span>

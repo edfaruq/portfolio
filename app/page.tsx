@@ -77,12 +77,11 @@ export default function Home() {
         </dl>
       </Container>
 
+      <HorizontalWork />
+
       {/* Logo strip: runs right to left, full bleed. */}
-      <section aria-label="Clients and teams I've worked with" className="pb-28 sm:pb-36">
-        <Container>
-          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-fg-dim">Clients &amp; teams I&apos;ve worked with</p>
-        </Container>
-        <Marquee speed={45} className="mt-10 py-4">
+      <section aria-label="Clients and teams I've worked with" className="relative min-[900px]:-mt-12">
+        <Marquee speed={45} className="py-4">
           {companies.map((p) => (
             <Link
               key={p.slug}
@@ -97,7 +96,6 @@ export default function Home() {
         </Marquee>
       </section>
 
-      <HorizontalWork />
       <DrillCore />
     </>
   );
