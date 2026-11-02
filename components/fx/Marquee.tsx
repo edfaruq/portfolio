@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, type ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 import { gsap, prefersReducedMotion, ScrollTrigger, useGSAP } from "@/lib/motion";
 
 /**
@@ -20,6 +20,12 @@ export function Marquee({
 }) {
   const root = useRef<HTMLDivElement>(null);
   const track = useRef<HTMLDivElement>(null);
+  const clone = useRef<HTMLDivElement>(null);
+
+  // The clone stays hoverable (unlike `inert`), but keyboard users only tab through the original.
+  useEffect(() => {
+    clone.current?.querySelectorAll("a,button").forEach((el) => el.setAttribute("tabindex", "-1"));
+  });
 
   useGSAP(
     () => {
@@ -76,7 +82,7 @@ export function Marquee({
     <div ref={root} className={`overflow-hidden ${className}`}>
       <div ref={track} className="flex w-max will-change-transform">
         <div className="flex shrink-0 items-center">{children}</div>
-        <div className="flex shrink-0 items-center" aria-hidden inert>
+        <div ref={clone} className="flex shrink-0 items-center" aria-hidden>
           {children}
         </div>
       </div>

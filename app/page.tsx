@@ -82,17 +82,22 @@ export default function Home() {
       {/* Logo strip: runs right to left, full bleed. */}
       <section aria-label="Clients and teams I've worked with" className="relative min-[900px]:-mt-12">
         <Marquee speed={45} className="py-4">
-          {companies.map((p) => (
-            <Link
-              key={p.slug}
-              href={`/projects/${p.slug}`}
-              data-cursor={p.relation === "Client" ? "Client" : "Worked with"}
-              data-cursor-color={p.color}
-              className="flex items-center px-10 text-fg/85 transition-colors duration-300 hover:text-lime sm:px-16"
-            >
-              <CompanyLogo logo={p.logo!} name={p.client} area={88} />
-            </Link>
-          ))}
+          {/* Three sets per half, so one half is always wider than even a very wide screen. */}
+          {[0, 1, 2].flatMap((set) =>
+            companies.map((p) => (
+              <Link
+                key={`${set}-${p.slug}`}
+                href={`/projects/${p.slug}`}
+                aria-hidden={set > 0 || undefined}
+                tabIndex={set > 0 ? -1 : undefined}
+                data-cursor={p.relation === "Client" ? "Client" : "Worked with"}
+                data-cursor-color={p.color}
+                className="group mx-4 flex items-center rounded-2xl px-6 py-4 text-fg/85 transition-colors duration-300 hover:bg-fg sm:mx-8 sm:px-8"
+              >
+                <CompanyLogo logo={p.logo!} name={p.client} area={88} reveal />
+              </Link>
+            )),
+          )}
         </Marquee>
       </section>
 
