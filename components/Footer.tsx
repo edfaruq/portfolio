@@ -4,7 +4,7 @@ import { useState } from "react";
 import { profile } from "@/content/profile";
 import { Magnetic } from "./fx/Magnetic";
 import { Marquee } from "./fx/Marquee";
-import { Container, Roll } from "./ui";
+import { ArrowUpRight, Container, Roll } from "./ui";
 
 export function Footer() {
   const [copied, setCopied] = useState(false);
@@ -51,8 +51,8 @@ export function Footer() {
         </div>
         <div className="grid grid-cols-2 gap-8 self-end font-mono text-sm uppercase tracking-widest">
           <ul className="space-y-2">
-            <li><a className="group" href={profile.links.linkedin}><Roll>LinkedIn ↗</Roll></a></li>
-            <li><a className="group" href={profile.links.github}><Roll>GitHub ↗</Roll></a></li>
+            <li><a className="group" href={profile.links.linkedin}><Roll>LinkedIn <ArrowUpRight /></Roll></a></li>
+            <li><a className="group" href={profile.links.github}><Roll>GitHub <ArrowUpRight /></Roll></a></li>
             <li><a className="group" href={profile.cv}><Roll>CV / PDF ↓</Roll></a></li>
           </ul>
           <ul className="space-y-2 text-bg/70">

@@ -5,6 +5,7 @@ import { type ReactNode, useRef } from "react";
 import { projects } from "@/content/projects";
 import { gsap, prefersReducedMotion, ScrollTrigger, useGSAP } from "@/lib/motion";
 import { CountUp } from "../fx/CountUp";
+import { ArrowUpRight } from "../ui";
 
 /** Pinned section: vertical scroll drives a horizontal strip of project cards (desktop). */
 /** `arts`: a server-rendered ContourArt per project slug. */
@@ -98,7 +99,7 @@ export function HorizontalWork({ arts }: { arts: Record<string, ReactNode> }) {
           className="group flex aspect-[4/3] items-center justify-center rounded-2xl border border-line min-[900px]:w-[min(30vw,420px)]"
         >
           <span className="font-display text-5xl font-bold uppercase tracking-tighter transition-transform duration-500 group-hover:scale-110 group-hover:text-lime">
-            All work ↗
+            All work <ArrowUpRight />
           </span>
         </Link>
       </div>

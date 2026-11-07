@@ -8,7 +8,7 @@ import { Magnetic } from "@/components/fx/Magnetic";
 import { PhotoStack } from "@/components/fx/PhotoStack";
 import { Parallax, Reveal } from "@/components/fx/Reveal";
 import { SplitText } from "@/components/fx/SplitText";
-import { Container, Eyebrow } from "@/components/ui";
+import { ArrowUpRight, Container, Eyebrow } from "@/components/ui";
 import { getProject, projects, sectors } from "@/content/projects";
 
 export function generateStaticParams() {
@@ -130,7 +130,7 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
           {p.link && (
             <Magnetic>
               <a href={p.link} target="_blank" rel="noopener noreferrer" data-cursor={p.link.includes("github.com") ? "Code" : "Open"} className="mt-10 inline-flex h-14 items-center rounded-full bg-lime px-7 font-mono text-sm uppercase tracking-widest text-bg">
-                {p.link.includes("github.com") ? "View code on GitHub ↗" : "Visit live site ↗"}
+                {p.link.includes("github.com") ? "View code on GitHub" : "Visit live site"} <ArrowUpRight className="ml-2" />
               </a>
             </Magnetic>
           )}

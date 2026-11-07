@@ -6,7 +6,7 @@ import { Marquee } from "@/components/fx/Marquee";
 import { Reveal } from "@/components/fx/Reveal";
 import { ScrollWords } from "@/components/fx/ScrollWords";
 import { SplitText } from "@/components/fx/SplitText";
-import { Container, Eyebrow } from "@/components/ui";
+import { ArrowUpRight, Container, Eyebrow } from "@/components/ui";
 import { certifications, education, organization, profile, skills } from "@/content/profile";
 import { getProject } from "@/content/projects";
 
@@ -109,7 +109,7 @@ export default function AboutPage() {
                   <span>
                     <span className="block font-display text-xl font-semibold leading-tight">{c.title}</span>
                     <span className="font-mono text-xs uppercase tracking-widest opacity-60">
-                      {c.issuer} · <span className="underline decoration-1 underline-offset-4">PDF ↗</span>
+                      {c.issuer} · <span className="underline decoration-1 underline-offset-4">PDF <ArrowUpRight /></span>
                     </span>
                   </span>
                   <span className="font-display text-3xl font-bold">{c.year}</span>
@@ -136,7 +136,7 @@ export default function AboutPage() {
                     aria-label={`HMIF certificate, ${c.label}: open PDF in a new tab`}
                     className="inline-flex h-10 items-center gap-2 rounded-full border border-line px-4 font-mono text-xs uppercase tracking-widest transition-colors hover:border-fg hover:bg-fg hover:text-bg"
                   >
-                    Certificate · {c.label} ↗
+                    Certificate · {c.label} <ArrowUpRight />
                   </a>
                 ))}
               </div>
